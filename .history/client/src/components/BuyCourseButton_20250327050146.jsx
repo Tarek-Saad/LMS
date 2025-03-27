@@ -36,7 +36,7 @@ const BuyCourseButton = ({ courseId }) => {
       if (data?.url) {
         window.location.href = data.url; // إعادة توجيه المستخدم إلى رابط الدفع
       } else {
-        toast.error('Payment is pending. Please provide the payment code once paid via WhatsApp');
+        toast.error(?.data?.message);
       }
     }
     if (isError) {

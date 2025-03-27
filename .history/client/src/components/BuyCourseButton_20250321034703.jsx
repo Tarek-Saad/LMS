@@ -17,7 +17,6 @@ const BuyCourseButton = ({ courseId }) => {
   const [createCheckoutSession, { data, isLoading, isSuccess, isError, error }] =
     useCreateCheckoutSessionMutation();
 
-
   const purchaseCourseHandler = async () => {
     // إذا كان الـ sessionID فارغًا أو غير صحيح، نعرض رسالة خطأ
     if (!sessionID) {
@@ -27,8 +26,6 @@ const BuyCourseButton = ({ courseId }) => {
 
     const response = await createCheckoutSession(courseId, sessionID);
     console.log(response); // تسجيل الاستجابة من الـ API
-    console.log(response.data.message); // تسجيل الاستجابة من الـ API
-    return response.data.message
   };
 
   useEffect(() => {
@@ -36,7 +33,7 @@ const BuyCourseButton = ({ courseId }) => {
       if (data?.url) {
         window.location.href = data.url; // إعادة توجيه المستخدم إلى رابط الدفع
       } else {
-        toast.error('Payment is pending. Please provide the payment code once paid via WhatsApp');
+        toast.error("Invalid response from server.");
       }
     }
     if (isError) {
